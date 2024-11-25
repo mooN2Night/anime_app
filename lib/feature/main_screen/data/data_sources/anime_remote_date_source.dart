@@ -1,0 +1,36 @@
+import 'package:anime_app/core/constants/string_constant.dart';
+import 'package:anime_app/core/error/exception.dart';
+import 'package:anime_app/feature/main_screen/data/models/anime_model.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+
+abstract class AnimeRemoteDataSource {
+  Future<AnimeModel> getRandomAnime();
+}
+
+class AnimeRemoteDataSourceImpl implements AnimeRemoteDataSource {
+  AnimeRemoteDataSourceImpl(this.dio);
+
+  final Dio dio;
+
+  @override
+  Future<AnimeModel> getRandomAnime() async {
+    try {
+      final response = await dio.get(
+        '${StringConstants.baseUrl}title/random',
+        options: Options(
+          headers: {'Content-Type': 'application/json'},
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        final anime = response.data;
+        return AnimeModel.fromJson(anime);
+      } else {
+        throw ServerException();
+      }
+    } on DioException {
+      throw ServerException();
+    }
+  }
+}

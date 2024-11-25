@@ -36,6 +36,29 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
 
+  #Icons
+  iconly: ^1.0.1
+
+  #Floating Bottom Bar
+  flutter_floating_bottom_bar: ^1.2.1+1
+
+  #Override the == operator and hashCode
+  equatable: ^2.0.5
+
+  #Functional Programming Either for Result or Failure
+  fpdart: ^1.1.1
+
+  json_annotation: ^4.9.0
+
+  #Remote Api
+  dio: ^5.7.0
+
+  #State Manager
+  flutter_bloc: ^8.1.6
+
+  #Service Locator
+  get_it: ^8.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -46,6 +69,13 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
+
+  json_serializable: ^6.8.0
+
+  analyzer: ^6.4.1
+
+  #Auto-generation of files
+  build_runner: ^2.4.9
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
