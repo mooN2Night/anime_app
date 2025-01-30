@@ -23,7 +23,7 @@ AnimeModel _$AnimeModelFromJson(Map<String, dynamic> json) => AnimeModel(
           (json['genres'] as List<dynamic>).map((e) => e as String).toList(),
       team: AnimeTeamModel.fromJson(json['team'] as Map<String, dynamic>),
       season: AnimeSeasonModel.fromJson(json['season'] as Map<String, dynamic>),
-      description: json['description'] as String,
+      description: json['description'] as String?,
       inFavorite: (json['in_favorites'] as num).toInt(),
       player: AnimePlayerModel.fromJson(json['player'] as Map<String, dynamic>),
     );

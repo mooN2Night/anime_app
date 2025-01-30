@@ -2,17 +2,27 @@ import 'package:anime_app/feature/main_screen/data/data_sources/anime_remote_dat
 import 'package:anime_app/feature/main_screen/data/mapper/mapper.dart';
 import 'package:anime_app/feature/main_screen/data/repositories_impl/anime_repository_impl.dart';
 import 'package:anime_app/feature/main_screen/domain/repositories/anime_repository.dart';
+import 'package:anime_app/feature/main_screen/domain/use_cases_impl/get_last_changes.dart';
 import 'package:anime_app/feature/main_screen/domain/use_cases_impl/get_random_anime.dart';
-import 'package:anime_app/feature/main_screen/presentation/bloc/random_anime_cubit/random_anime_cubit.dart';
+import 'package:anime_app/feature/main_screen/presentation/bloc/last_changes_bloc/last_changes_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+
+import 'feature/main_screen/presentation/bloc/random_anime_bloc/random_anime_bloc.dart';
+import 'feature/main_screen/presentation/bloc/random_anime_bloc/random_anime_cubit.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  sl.registerFactory(() => RandomAnimeCubit(getRandomAnimeUseCase: sl()));
+  // sl.registerFactory(() => RandomAnimeCubit(getRandomAnimeUseCase: sl()));
+
+  sl.registerFactory(() => RandomAnimeBloc(sl()));
+
+  sl.registerFactory(() => LastChangesBloc(sl()));
 
   sl.registerLazySingleton(() => GetRandomAnimeUseCase(sl()));
+
+  sl.registerLazySingleton(() => GetLastChangesUseCase(sl()));
 
   sl.registerLazySingleton<AnimeRepository>(
     () => AnimeRepositoryImpl(

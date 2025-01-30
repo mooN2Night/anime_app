@@ -1,5 +1,7 @@
 import 'package:anime_app/feature/main_screen/data/models/anime_model.dart';
+import 'package:anime_app/feature/main_screen/data/models/last_changes_model.dart';
 import 'package:anime_app/feature/main_screen/domain/entities/anime_entity.dart';
+import 'package:anime_app/feature/main_screen/domain/entities/last_changes_entity.dart';
 
 class Mapper {
   AnimeEntity animeToEntity(AnimeModel animeModel) {
@@ -135,11 +137,32 @@ class Mapper {
   }
 
   AnimeEpisodeEntity animeEpisodeModelToEntity(
-      AnimeEpisodeModel animeEpisodeModel) {
+    AnimeEpisodeModel animeEpisodeModel,
+  ) {
     return AnimeEpisodeEntity(
       episodeNumber: animeEpisodeModel.episodeNumber,
       episodeName: animeEpisodeModel.episodeName,
       episodeImage: animeEpisodeModel.episodeImage,
+    );
+  }
+
+  LastChangesAnimeEntity lastChangesAnimeModelToEntity(
+    LastChangesAnimeModel lastChangesAnimeModel,
+  ) {
+    return LastChangesAnimeEntity(
+      animeList: lastChangesAnimeModel.animeList
+          .map((anime) => animeToEntity(anime))
+          .toList(),
+      pagination: paginationModelToEntity(lastChangesAnimeModel.pagination),
+    );
+  }
+
+  PaginationEntity paginationModelToEntity(PaginationModel paginationModel) {
+    return PaginationEntity(
+      pages: paginationModel.pages,
+      currentPage: paginationModel.currentPage,
+      itemsPerPage: paginationModel.itemsPerPage,
+      totalItems: paginationModel.totalItems,
     );
   }
 }

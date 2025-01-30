@@ -1,12 +1,8 @@
 import 'package:anime_app/core/constants/theme_constant.dart';
 import 'package:anime_app/core/providers/size_provider.dart';
 import 'package:anime_app/core/providers/theme_provider.dart';
-import 'package:anime_app/feature/main_screen/presentation/bloc/random_anime_cubit/random_anime_cubit.dart';
-import 'package:anime_app/service_locator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'service_locator.dart' as di;
-import 'package:flutter/services.dart';
 
 import 'home_page.dart';
 
@@ -40,20 +36,13 @@ class _MyAppState extends State<MyApp> {
     return ThemeProvider(
       isLightTheme: isLightTheme,
       toggleTheme: _toggleTheme,
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => sl<RandomAnimeCubit>()..loadRandomAnime(),
-          )
-        ],
-        child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: isLightTheme
-              ? ThemeConstants.lightTheme
-              : ThemeConstants.darkTheme,
-          home: const HomePage(),
-          debugShowCheckedModeBanner: false,
-        ),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: isLightTheme
+            ? ThemeConstants.lightTheme
+            : ThemeConstants.darkTheme,
+        home: const HomePage(),
+        debugShowCheckedModeBanner: false,
       ),
     );
   }

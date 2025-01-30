@@ -155,7 +155,7 @@ class _DetailAnimePageState extends State<DetailAnimePage> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  widget.anime.description,
+                  widget.anime.description ?? '',
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 const SizedBox(height: 10),

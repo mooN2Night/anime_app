@@ -3,9 +3,9 @@ import 'package:anime_app/core/error/failure.dart';
 
 String mapFailureToMessage(Failure failure) {
   switch (failure.runtimeType) {
-    case ServerFailure:
+    case ServerFailure _:
       return StringConstants.serverFailure;
-    case CacheFailure:
+    case CacheFailure _:
       return StringConstants.cacheFailure;
     default:
       return StringConstants.unexpectedFailure;

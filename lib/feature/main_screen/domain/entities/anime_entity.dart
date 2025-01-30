@@ -13,7 +13,7 @@ class AnimeEntity extends Equatable {
   final List<String> genres;
   final AnimeTeamEntity team;
   final AnimeSeasonEntity season;
-  final String description;
+  final String? description;
   final int inFavorite;
   final AnimePlayerEntity player;
 

@@ -15,7 +15,7 @@ class AnimeModel {
   final List<String> genres;
   final AnimeTeamModel team;
   final AnimeSeasonModel season;
-  final String description;
+  final String? description;
   @JsonKey(name: 'in_favorites')
   final int inFavorite;
   final AnimePlayerModel player;
