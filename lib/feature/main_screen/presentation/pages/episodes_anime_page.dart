@@ -7,7 +7,7 @@ import '../../domain/entities/anime_entity.dart';
 class EpisodesAnimePage extends StatelessWidget {
   const EpisodesAnimePage({super.key, required this.episodesEntity});
 
-  final List<AnimeEpisodeEntity> episodesEntity;
+  final List<AnimeEpisodeEntity>? episodesEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +26,9 @@ class EpisodesAnimePage extends StatelessWidget {
           horizontal: 16,
           vertical: 8,
         ),
-        itemCount: episodesEntity.length,
+        itemCount: episodesEntity?.length,
         itemBuilder: (context, index) {
-          final episode = episodesEntity[index];
+          final episode = episodesEntity?[index];
           return Container(
             margin: EdgeInsets.only(bottom: 10),
             child: Row(
@@ -41,7 +41,7 @@ class EpisodesAnimePage extends StatelessWidget {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  episode.episodeNumber.toString(),
+                  episode?.episodeNumber.toString() ?? 'Nety seriy',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ],

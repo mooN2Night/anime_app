@@ -15,7 +15,7 @@ class AnimeEntity extends Equatable {
   final AnimeSeasonEntity season;
   final String? description;
   final int inFavorite;
-  final AnimePlayerEntity player;
+  final AnimePlayerEntity? player;
 
   const AnimeEntity({
     required this.id,
@@ -186,9 +186,9 @@ class AnimeSeasonEntity extends Equatable {
 class AnimePlayerEntity extends Equatable {
   final String? alternativePlayer;
   final String? host;
-  final bool isRutube;
-  final AnimeReleasedEpisodeEntity releasedEpisodeEntity;
-  final Map<String, AnimeEpisodeEntity> episodeEntity;
+  final bool? isRutube;
+  final AnimeReleasedEpisodeEntity? releasedEpisodeEntity;
+  final Map<String, AnimeEpisodeEntity>? episodeEntity;
 
   const AnimePlayerEntity({
     required this.alternativePlayer,
@@ -227,11 +227,13 @@ class AnimeEpisodeEntity extends Equatable {
   final int? episodeNumber;
   final String? episodeName;
   final String? episodeImage;
+  final int? createdTimestamp;
 
   const AnimeEpisodeEntity({
     required this.episodeNumber,
     required this.episodeName,
     required this.episodeImage,
+    required this.createdTimestamp,
   });
 
   factory AnimeEpisodeEntity.fromModel(AnimeEpisodeModel model) {
@@ -239,9 +241,15 @@ class AnimeEpisodeEntity extends Equatable {
       episodeNumber: model.episodeNumber,
       episodeName: model.episodeName,
       episodeImage: model.episodeImage,
+      createdTimestamp: model.createdTimestamp,
     );
   }
 
   @override
-  List<Object?> get props => [episodeNumber, episodeName, episodeImage];
+  List<Object?> get props => [
+        episodeNumber,
+        episodeName,
+        episodeImage,
+        createdTimestamp,
+      ];
 }

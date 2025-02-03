@@ -18,7 +18,7 @@ class AnimeModel {
   final String? description;
   @JsonKey(name: 'in_favorites')
   final int inFavorite;
-  final AnimePlayerModel player;
+  final AnimePlayerModel? player;
 
   AnimeModel({
     required this.id,
@@ -215,11 +215,11 @@ class AnimePlayerModel {
   final String? alternativePlayer;
   final String? host;
   @JsonKey(name: 'is_rutube')
-  final bool isRutube;
+  final bool? isRutube;
   @JsonKey(name: 'episodes')
-  final AnimeReleasedEpisodeModel releasedEpisodeModel;
+  final AnimeReleasedEpisodeModel? releasedEpisodeModel;
   @JsonKey(name: 'list')
-  final Map<String, AnimeEpisodeModel> episodeModel;
+  final Map<String, AnimeEpisodeModel>? episodeModel;
 
   const AnimePlayerModel({
     required this.alternativePlayer,
@@ -264,11 +264,14 @@ class AnimeEpisodeModel {
   final String? episodeName;
   @JsonKey(name: 'preview')
   final String? episodeImage;
+  @JsonKey(name: 'created_timestamp')
+  final int? createdTimestamp;
 
   const AnimeEpisodeModel({
     required this.episodeNumber,
     required this.episodeName,
     required this.episodeImage,
+    required this.createdTimestamp,
   });
 
   factory AnimeEpisodeModel.fromJson(Map<String, dynamic> json) =>

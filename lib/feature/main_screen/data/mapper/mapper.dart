@@ -104,31 +104,31 @@ class Mapper {
     );
   }
 
-  AnimePlayerEntity animePlayerToEntity(AnimePlayerModel animePlayerModel) {
+  AnimePlayerEntity animePlayerToEntity(AnimePlayerModel? animePlayerModel) {
     return AnimePlayerEntity(
-      alternativePlayer: animePlayerModel.alternativePlayer,
-      host: animePlayerModel.host,
-      isRutube: animePlayerModel.isRutube,
+      alternativePlayer: animePlayerModel?.alternativePlayer,
+      host: animePlayerModel?.host,
+      isRutube: animePlayerModel?.isRutube,
       releasedEpisodeEntity:
-          animeReleasedEpisodeToEntity(animePlayerModel.releasedEpisodeModel),
-      episodeEntity: animeEpisodeToEntity(animePlayerModel.episodeModel),
+          animeReleasedEpisodeToEntity(animePlayerModel?.releasedEpisodeModel),
+      episodeEntity: animeEpisodeToEntity(animePlayerModel?.episodeModel),
     );
   }
 
   AnimeReleasedEpisodeEntity animeReleasedEpisodeToEntity(
-    AnimeReleasedEpisodeModel animeReleasedEpisodeModel,
+    AnimeReleasedEpisodeModel? animeReleasedEpisodeModel,
   ) {
     return AnimeReleasedEpisodeEntity(
-      firstEpisode: animeReleasedEpisodeModel.firstEpisode,
-      lastEpisode: animeReleasedEpisodeModel.lastEpisode,
-      releasedEpisodes: animeReleasedEpisodeModel.releasedEpisodes,
+      firstEpisode: animeReleasedEpisodeModel?.firstEpisode,
+      lastEpisode: animeReleasedEpisodeModel?.lastEpisode,
+      releasedEpisodes: animeReleasedEpisodeModel?.releasedEpisodes,
     );
   }
 
-  Map<String, AnimeEpisodeEntity> animeEpisodeToEntity(
-    Map<String, AnimeEpisodeModel> animeEpisodeModel,
+  Map<String, AnimeEpisodeEntity>? animeEpisodeToEntity(
+    Map<String, AnimeEpisodeModel>? animeEpisodeModel,
   ) {
-    return animeEpisodeModel.map(
+    return animeEpisodeModel?.map(
       (key, value) => MapEntry(
         key,
         animeEpisodeModelToEntity(value),
@@ -143,6 +143,7 @@ class Mapper {
       episodeNumber: animeEpisodeModel.episodeNumber,
       episodeName: animeEpisodeModel.episodeName,
       episodeImage: animeEpisodeModel.episodeImage,
+      createdTimestamp: animeEpisodeModel.createdTimestamp
     );
   }
 
