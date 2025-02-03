@@ -1,13 +1,12 @@
+import 'package:anime_app/feature/main_screen/presentation/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../core/constants/string_constant.dart';
 import '../../../../core/providers/size_provider.dart';
-import '../../domain/entities/anime_entity.dart';
 import '../../domain/use_cases_impl/get_random_anime.dart';
 import '../bloc/random_anime_bloc/random_anime_bloc.dart';
-import '../pages/detail_anime_page.dart';
 
 class RandomAnimeWidget extends StatefulWidget {
   const RandomAnimeWidget({super.key});
@@ -40,7 +39,7 @@ class _RandomAnimeWidgetState extends State<RandomAnimeWidget> {
           case RandomAnimeBlocLoaded _:
             final anime = state.animeEntity;
             return GestureDetector(
-              onTap: () => _navigateToDetailPage(context, anime),
+              onTap: () => navigateToDetailPage(context, anime),
               child: Stack(
                 children: [
                   Image.network(
@@ -117,15 +116,6 @@ class _RandomAnimeWidgetState extends State<RandomAnimeWidget> {
           color: Colors.green,
         );
       },
-    );
-  }
-
-  void _navigateToDetailPage(BuildContext ctx, AnimeEntity anime) {
-    Navigator.push(
-      ctx,
-      MaterialPageRoute(
-        builder: (_) => DetailAnimePage(anime: anime),
-      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:anime_app/core/constants/string_constant.dart';
 import 'package:anime_app/core/providers/size_provider.dart';
 import 'package:anime_app/core/providers/theme_provider.dart';
 import 'package:anime_app/feature/main_screen/domain/entities/anime_entity.dart';
+import 'package:anime_app/feature/main_screen/presentation/utils/season_converter.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
@@ -26,12 +27,6 @@ class _DetailAnimePageState extends State<DetailAnimePage> {
     if (size == null) {
       return const SizedBox.shrink();
     }
-
-    debugPrint(
-      widget.anime.player.episodeEntity.entries
-          .map((e) => e..value.episodeImage)
-          .toString(),
-    );
 
     return Scaffold(
       body: SafeArea(
@@ -166,7 +161,7 @@ class _DetailAnimePageState extends State<DetailAnimePage> {
                     MaterialPageRoute(
                       builder: (_) {
                         final episodesEntity = widget
-                            .anime.player.episodeEntity.entries
+                            .anime.player?.episodeEntity?.entries
                             .map((e) => e.value)
                             .toList();
                         debugPrint(episodesEntity.toString());
@@ -203,6 +198,8 @@ class _DetailAnimePageState extends State<DetailAnimePage> {
     String body,
     String title,
   ) {
+    final String? season = widget.anime.season.string;
+    final year = widget.anime.season.year;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -211,20 +208,10 @@ class _DetailAnimePageState extends State<DetailAnimePage> {
           style: Theme.of(context).textTheme.titleSmall,
         ),
         Text(
-          title == 'Дата' ? _convertSeason() : body,
+          title == 'Дата' ? convertSeason(season, year) : body,
           style: Theme.of(context).textTheme.bodySmall,
         ),
       ],
     );
-  }
-
-  String _convertSeason() {
-    final String? season = widget.anime.season.string;
-    final year = widget.anime.season.year;
-    if (season == null) {
-      return '$year год';
-    } else {
-      return '$season $year года';
-    }
   }
 }

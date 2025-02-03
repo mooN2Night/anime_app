@@ -25,7 +25,9 @@ AnimeModel _$AnimeModelFromJson(Map<String, dynamic> json) => AnimeModel(
       season: AnimeSeasonModel.fromJson(json['season'] as Map<String, dynamic>),
       description: json['description'] as String?,
       inFavorite: (json['in_favorites'] as num).toInt(),
-      player: AnimePlayerModel.fromJson(json['player'] as Map<String, dynamic>),
+      player: json['player'] == null
+          ? null
+          : AnimePlayerModel.fromJson(json['player'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AnimeModelToJson(AnimeModel instance) =>
@@ -188,10 +190,12 @@ AnimePlayerModel _$AnimePlayerModelFromJson(Map<String, dynamic> json) =>
     AnimePlayerModel(
       alternativePlayer: json['alternative_player'] as String?,
       host: json['host'] as String?,
-      isRutube: json['is_rutube'] as bool,
-      releasedEpisodeModel: AnimeReleasedEpisodeModel.fromJson(
-          json['episodes'] as Map<String, dynamic>),
-      episodeModel: (json['list'] as Map<String, dynamic>).map(
+      isRutube: json['is_rutube'] as bool?,
+      releasedEpisodeModel: json['episodes'] == null
+          ? null
+          : AnimeReleasedEpisodeModel.fromJson(
+              json['episodes'] as Map<String, dynamic>),
+      episodeModel: (json['list'] as Map<String, dynamic>?)?.map(
         (k, e) =>
             MapEntry(k, AnimeEpisodeModel.fromJson(e as Map<String, dynamic>)),
       ),
@@ -227,6 +231,7 @@ AnimeEpisodeModel _$AnimeEpisodeModelFromJson(Map<String, dynamic> json) =>
       episodeNumber: (json['episode'] as num?)?.toInt(),
       episodeName: json['name'] as String?,
       episodeImage: json['preview'] as String?,
+      createdTimestamp: (json['created_timestamp'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$AnimeEpisodeModelToJson(AnimeEpisodeModel instance) =>
@@ -234,4 +239,5 @@ Map<String, dynamic> _$AnimeEpisodeModelToJson(AnimeEpisodeModel instance) =>
       'episode': instance.episodeNumber,
       'name': instance.episodeName,
       'preview': instance.episodeImage,
+      'created_timestamp': instance.createdTimestamp,
     };
