@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 abstract class AnimeRemoteDataSource {
   Future<AnimeModel> getRandomAnime();
 
-  Future<LastChangesAnimeModel> getLastChanges();
+  Future<LastChangesAnimeModel> getLastChanges(int page);
 }
 
 class AnimeRemoteDataSourceImpl implements AnimeRemoteDataSource {
@@ -39,10 +39,10 @@ class AnimeRemoteDataSourceImpl implements AnimeRemoteDataSource {
   }
 
   @override
-  Future<LastChangesAnimeModel> getLastChanges() async {
+  Future<LastChangesAnimeModel> getLastChanges(int page) async {
     try {
       final response = await dio.get(
-        '${StringConstants.baseUrl}title/changes?limit=15',
+        '${StringConstants.baseUrl}title/changes?limit=15&page=$page',
         options: Options(
           headers: {'Content-Type': 'application/json'},
         ),

@@ -28,9 +28,9 @@ class AnimeRepositoryImpl implements AnimeRepository {
   }
 
   @override
-  Future<Either<Failure, LastChangesAnimeEntity>> getLastChanges() async {
+  Future<Either<Failure, LastChangesAnimeEntity>> getLastChanges(int page) async {
     try {
-      final remoteAnimeModel = await remoteDataSource.getLastChanges();
+      final remoteAnimeModel = await remoteDataSource.getLastChanges(page);
 
       final remoteAnimeEntity = mapper.lastChangesAnimeModelToEntity(remoteAnimeModel);
 

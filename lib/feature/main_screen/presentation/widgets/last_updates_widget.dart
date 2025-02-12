@@ -2,9 +2,7 @@ import 'package:anime_app/core/providers/size_provider.dart';
 import 'package:anime_app/feature/main_screen/domain/use_cases_impl/get_last_changes.dart';
 import 'package:anime_app/feature/main_screen/presentation/bloc/last_changes_bloc/last_changes_bloc.dart';
 import 'package:anime_app/feature/main_screen/presentation/utils/navigator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:iconly/iconly.dart';
@@ -19,11 +17,12 @@ class LastUpdatesWidget extends StatefulWidget {
 }
 
 class _LastUpdatesWidgetState extends State<LastUpdatesWidget> {
-  final _lastChangesBloc = LastChangesBloc(GetIt.I<GetLastChangesUseCase>());
+  late final LastChangesBloc _lastChangesBloc;
 
   @override
   void initState() {
     super.initState();
+    _lastChangesBloc = LastChangesBloc(GetIt.I<GetLastChangesUseCase>());
     _lastChangesBloc.add(LoadLastChanges());
   }
 
@@ -43,7 +42,7 @@ class _LastUpdatesWidgetState extends State<LastUpdatesWidget> {
           return Column(
             children: [
               GestureDetector(
-                onTap: () => navigateToLastChanges(context, animeList),
+                onTap: () => navigateToLastChanges(context, _lastChangesBloc),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 16, top: 16),
                   child: Row(
