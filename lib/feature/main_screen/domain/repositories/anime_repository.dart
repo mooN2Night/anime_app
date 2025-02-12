@@ -6,5 +6,5 @@ import 'package:fpdart/fpdart.dart';
 abstract class AnimeRepository {
   Future<Either<Failure, AnimeEntity>> getRandomAnime();
 
-  Future<Either<Failure, LastChangesAnimeEntity>> getLastChanges();
+  Future<Either<Failure, LastChangesAnimeEntity>> getLastChanges(int page);
 }

@@ -9,7 +9,7 @@ class GetLastChangesUseCase {
 
   final AnimeRepository animeRepository;
 
-  Future<Either<Failure, LastChangesAnimeEntity>> getLastChanges() async {
-    return await animeRepository.getLastChanges();
+  Future<Either<Failure, LastChangesAnimeEntity>> getLastChanges(int page) async {
+    return await animeRepository.getLastChanges(page);
   }
 }
